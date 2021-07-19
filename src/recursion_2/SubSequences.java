@@ -3,6 +3,19 @@ package recursion_2;
 import java.util.Scanner;
 
 public class SubSequences {
+	
+	private static void printSubSequence(String str, String output) {
+		if(str.length() == 0) {
+			System.out.println(output);
+			return;
+		}
+		printSubSequence(str.substring(1), output);
+		printSubSequence(str.substring(1), str.charAt(0) + output);
+	}
+	
+	public static void printSubSequence(String str) {
+		printSubSequence(str, "");
+	}
 
 	public static String[] subSequence(String str) {
 		if(str.length() == 0) {
@@ -28,9 +41,12 @@ public class SubSequences {
 		String str;
 		Scanner sc = new Scanner(System.in);
 		str = sc.next();
+		System.out.println("By returning!");
 		String ans[] = subSequence(str);
 		for(int i = 0; i < ans.length; i++) 
 			System.out.println(ans[i]);
+		System.out.println("By printing!");
+		printSubSequence(str);
 		sc.close();
 	}
 
