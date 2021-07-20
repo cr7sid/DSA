@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class KeypadCombo {
 	
-	//TODO: Complete this by both methods!
-	
 	private static void printKeyPadCombo(int num, String output) {
 		if(num == 0) {
 			System.out.println(output);
