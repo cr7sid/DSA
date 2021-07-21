@@ -2,15 +2,15 @@ package tree;
 
 public class LargestNode {
 	
-	public static int largestNode(TreeNode<Integer> root) {
+	public static TreeNode<Integer> largestNode(TreeNode<Integer> root) {
 		if(root == null) {
 			//This is not a base case. This is edge case, it will be called in case user sends null tree.
-			return Integer.MIN_VALUE;
+			return null;
 		}
-		int ans = root.data;
+		TreeNode<Integer> ans = root;
 		for(int i = 0; i < root.children.size(); i++) {
-			int childLargest = largestNode(root.children.get(i));
-			if(childLargest > ans) {
+			TreeNode<Integer> childLargest = largestNode(root.children.get(i));
+			if(childLargest != null && childLargest.data > ans.data) {
 				ans = childLargest;
 			}
 		}
@@ -19,7 +19,7 @@ public class LargestNode {
 
 	public static void main(String[] args) {
 		TreeNode<Integer> root = TreeUse.takeInputLevelWise();
-		int largest = largestNode(root);
-		System.out.println("Largest node:" + largest);	
+		TreeNode<Integer> largest = largestNode(root);
+		System.out.println("Largest node:" + (largest != null ? largest.data : "null"));	
 	}
 }

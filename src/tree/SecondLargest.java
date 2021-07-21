@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class NodesGreaterThanX {
+public class SecondLargest {
 	
 	public static TreeNode<Integer> takeInput(Scanner sc) {
 		System.out.println("Enter root node");
@@ -27,26 +27,33 @@ public class NodesGreaterThanX {
 		return root;
 	}
 	
-	public static int nodesGreaterThanX(TreeNode<Integer> root, int  x) {
-		if(root == null) {
-			return -1;
+	private static TreeNode<Integer> secondLargest(TreeNode<Integer> root, TreeNode<Integer> largest, TreeNode<Integer> secondLargest) {
+		
+		if(root.data < largest.data) {
+			if(secondLargest == null)
+				secondLargest = root;
+			else if(root.data > secondLargest.data) 
+				secondLargest = root;
 		}
-		int count = 0;
-		if(root.data > x)
-			count++;
 		for(int i = 0; i < root.children.size(); i++) {
-			count += nodesGreaterThanX(root.children.get(i), x);
+			secondLargest = secondLargest(root.children.get(i), largest, secondLargest);
 		}
-		return count;
+		return secondLargest;
+	}
+	
+	public static TreeNode<Integer> secondLargest(TreeNode<Integer> root) {
+		if(root == null || root.children.size() == 0) {
+			return null;
+		}
+		TreeNode<Integer> largest = LargestNode.largestNode(root);
+		return secondLargest(root, largest, null);
 	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter x");
-		int x = sc.nextInt();
 		TreeNode<Integer> root = takeInput(sc);
-		int ans = nodesGreaterThanX(root, x);
-		System.out.println(ans);
+		TreeNode<Integer> ans = secondLargest(root);
+		System.out.println((ans != null) ? ans.data : "null");
 		sc.close();
 	}
 

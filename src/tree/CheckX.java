@@ -4,7 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class NodesGreaterThanX {
+public class CheckX {
+	
+	static boolean ans = false;
 	
 	public static TreeNode<Integer> takeInput(Scanner sc) {
 		System.out.println("Enter root node");
@@ -27,17 +29,19 @@ public class NodesGreaterThanX {
 		return root;
 	}
 	
-	public static int nodesGreaterThanX(TreeNode<Integer> root, int  x) {
+	public static boolean checkX(TreeNode<Integer> root, int x) {
 		if(root == null) {
-			return -1;
+			return false;
 		}
-		int count = 0;
-		if(root.data > x)
-			count++;
+		if(root.data == x) {
+			ans = true;
+		}
 		for(int i = 0; i < root.children.size(); i++) {
-			count += nodesGreaterThanX(root.children.get(i), x);
+			ans = checkX(root.children.get(i), x);
+			if(ans == true)
+				break;
 		}
-		return count;
+		return ans;
 	}
 
 	public static void main(String[] args) {
@@ -45,8 +49,8 @@ public class NodesGreaterThanX {
 		System.out.println("Enter x");
 		int x = sc.nextInt();
 		TreeNode<Integer> root = takeInput(sc);
-		int ans = nodesGreaterThanX(root, x);
-		System.out.println(ans);
+		boolean check = checkX(root, x);
+		System.out.println(check);
 		sc.close();
 	}
 
