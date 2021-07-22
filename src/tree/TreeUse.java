@@ -85,14 +85,14 @@ public class TreeUse {
 		root.children.add(node1);
 		root.children.add(node2);
 		root.children.add(node3);
-		
 		node2.children.add(node4);
-		
-		System.out.print(root);*/
-		
-		//System.out.println("Using recursion");
-		//TreeNode<Integer> root = takeInput();
-		//print(root);
+		System.out.print(root);
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Using recursion");
+		TreeNode<Integer> root = takeInput(sc);
+		print(root);
+		sc.close();*/
 		System.out.println("Without recursion");
 		TreeNode<Integer> root1 = takeInputLevelWise();
 		printLevelWise(root1);
