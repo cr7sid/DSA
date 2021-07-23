@@ -1,9 +1,9 @@
 package binary_tree;
 
 public class CountNodes {
-	
+
 	public static int countNodes(BinaryTreeNode<Integer> root) {
-		if(root == null) {
+		if (root == null) {
 			return 0;
 		}
 		int ans = 1;
