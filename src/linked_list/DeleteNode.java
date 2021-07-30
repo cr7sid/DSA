@@ -2,6 +2,16 @@ package linked_list;
 
 public class DeleteNode {
 
+	public static Node<Integer> deleteRecursively(Node<Integer> head, int pos) {
+		if (pos == 0)
+			return head.next;
+		if (head == null)
+			return head;
+
+		head.next = deleteRecursively(head.next, pos - 1);
+		return head;
+	}
+
 	public static Node<Integer> delete(Node<Integer> head, int pos) {
 		if (pos == 0) {
 			head = head.next;
@@ -24,7 +34,8 @@ public class DeleteNode {
 	public static void main(String[] args) {
 		Node<Integer> head = LinkedListUse.takeInput();
 		LinkedListUse.print(head);
-		head = delete(head, 4);
+//		head = delete(head, 4);
+		head = deleteRecursively(head, 4);
 		LinkedListUse.print(head);
 	}
 
