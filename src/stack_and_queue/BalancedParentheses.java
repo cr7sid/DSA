@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BalancedParentheses {
 
 	public static boolean isBalanced(String str) throws StackEmptyException {
-		if (str.isEmpty())
+		if (str == null || str.isEmpty())
 			return true;
 		StackUsingLL<Character> parentheses = new StackUsingLL<>();
 		for (int i = 0; i < str.length(); i++) {
