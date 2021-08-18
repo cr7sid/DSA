@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class RunningMedian {
 
-	// TODO: Understand how higher.getMin() works in even case. (Line - 18).
-
 	public static int[] runningMedian(int[] arr) {
 		int[] ans = new int[arr.length];
 		MaxPriorityQueue lower = new MaxPriorityQueue();
